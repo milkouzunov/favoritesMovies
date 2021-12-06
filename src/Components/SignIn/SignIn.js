@@ -1,6 +1,6 @@
 /* eslint-disable no-throw-literal */
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 
@@ -41,8 +41,14 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn({ history }) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const apiError = useSelector((state) => state.auth.error);
+  const [error, setError] = useState([]);
 
-  const [error, setError] = useState("");
+  useEffect(() => {
+    if(apiError !== '') {
+      return setError(state => [...state, apiError]);
+    }
+  }, [apiError])
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -51,12 +57,15 @@ export default function SignIn({ history }) {
     const password = e.target.password.value;
 
     if (username === "" || password === "") {
-      return setError("All fields is requred!");
+      return setError(state => [...state, "All fields is requred!"]);
     }
 
     dispatch(signinRequest({ username, password }));
-    history.push("/");
+
+    history.push('/')
   };
+
+ 
 
   return (
     <Container component="main" maxWidth="xs">
@@ -91,7 +100,7 @@ export default function SignIn({ history }) {
             id="password"
             autoComplete="current-password"
           />
-          <Error>{error}</Error>
+          <Error>{error.join(' \n ')}</Error>
           <Button
             type="submit"
             fullWidth

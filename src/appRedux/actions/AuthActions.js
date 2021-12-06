@@ -3,6 +3,7 @@ import {
     SIGNUP_SUCCESS,
     SIGNIN_REQUEST,
     SIGNIN_SUCCESS,
+    SIGNIN_ERROR_SUCCESS,
     LOGOUT_SUCCESS,
 } from '../actionTypes';
 
@@ -25,6 +26,11 @@ export const signinSuccess = (userData) => ({
     type: SIGNIN_SUCCESS,
     userData
 });
+
+export const signinErrorSuccess = (error) => ({
+    type: SIGNIN_ERROR_SUCCESS,
+    error
+})
 
 export const logoutSuccess = () => ({
     type: LOGOUT_SUCCESS
