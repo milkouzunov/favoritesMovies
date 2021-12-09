@@ -60,16 +60,11 @@ export default function MovieCard(movie) {
       to={`/details/${movie.movie.id}`}
     >
       <div className="card">
-        <div className="card-image">
           <img
+            className="card-image"
             alt="movie image"
             src={movie.movie.imageUrl}
-            style={{
-              width: "100%",
-              height: "100%",
-            }}
           />
-        </div>
         <div className="card-content">
           <h2>{movie.movie.name}</h2>
           <p>
@@ -148,17 +143,15 @@ export default function MovieCard(movie) {
             text-align: left;
             display: flex;
             flex-direction: row;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 5px;
+            flex-wrap: wrap;
           }
-
           .card-image {
-            width: 21%;
-            height: 300px;
+            flex-basis: 20%;
+            height: 40vh;
+            margin: 10px 5px;
           }
-
           .card-content {
-            width: 50%;
+            flex-basis: 70%;
             padding: 20px 40px;
           }
         `}

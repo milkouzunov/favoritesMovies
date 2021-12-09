@@ -15,6 +15,7 @@ const Layout = () => (
     style= {{
         backgroundImage: `url(${"./home.jpg"})`,
         backgroundSize: 'cover',
+        width: '100vw',
         fontWeight: 'normal',
         marginTop: '0',
         paddingTop: '1em',
@@ -29,6 +30,7 @@ const Layout = () => (
           fontSize: '4em',
           fontWeight: 'normal',
           marginBottom: 0,
+          width: '100vw',
           marginTop: '3em',
           color: 'white'
         }}

@@ -7,11 +7,9 @@ import StarRatings from "react-star-ratings";
 import { Link } from "@material-ui/core";
 import Comments from "./Comments/Comments";
 
-import * as reviewService from "../../services/reviewService";
-
 import { getMovieRequest } from "../../appRedux/actions/MoviesActions";
 import { addFavoritesRequest, getFavoritesRequest, removeFavoritesRequest } from "../../appRedux/actions/FavoritesActions";
-
+import { addRatingRequest } from '../../appRedux/actions/RatingActions'
 export default function Details({ match }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [rating, setRating] = useState(0);
@@ -86,27 +84,20 @@ export default function Details({ match }) {
   };
 
   const changeRating = async (newRating, name) => {
-    try {
-      await reviewService.addRatings({
-        rating: newRating,
-        username: name,
-        movieId: movie.id,
-      });
-      setIsUserRating(false);
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(addRatingRequest({
+      rating: newRating,
+      username: name,
+      movieId: movie.id,
+    }));
+    
+    setIsUserRating(false);
+
   };
 
   return (
     <section>
       <div className="card">
-        <div
-          className="card-image"
-          style={{
-            backgroundImage: `url(${movie.imageUrl})`,
-          }}
-        ></div>
+        <img className="card-image" src={movie.imageUrl} alt="movie-img"/>
         <div className="card-content">
           <h2>{movie.name}</h2>
           <p>
@@ -140,16 +131,11 @@ export default function Details({ match }) {
             </Link>
           ) : null}
         </div>
-        <div
-          style={{
-            left: 16,
-            position: "absolute",
-            marginTop: "22em",
-          }}
-        >
+        <div className="review">
           <h1>Your Rating</h1>
           <StarRatings
             rating={rating}
+            className="star-rating"
             starSelectingHoverColor="rgb(251 251 5)"
             starRatedColor="#e6e63a"
             isAggregateRating="true"
@@ -157,13 +143,6 @@ export default function Details({ match }) {
             numberOfStars={5}
             name={username}
           />
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            marginTop: "31em",
-          }}
-        >
           <Comments movieComments={movie.comments} movieId={movie.id} />
         </div>
       </div>
@@ -211,22 +190,23 @@ export default function Details({ match }) {
             text-align: left;
             display: flex;
             flex-direction: row;
-
-             {
-              /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 5px; */
-            }
+            flex-wrap: wrap;
           }
-
           .card-image {
-            width: 13%;
-            height: 300px;
-            background-size: 259px 298px;
+            flex-basis: 15%;
+            height: 40vh;
+            margin: 10px 5px;
           }
-
           .card-content {
-            width: 50%;
+            flex-basis: 70%;
             padding: 20px 40px;
+          }
+          .review {
+            diplay: flex;
+            margin: 10px
+          }
+          .ant-list.ant-list-split {
+            margin-top: 10px
           }
         `}
       </style>

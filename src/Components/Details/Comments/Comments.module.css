@@ -1,0 +1,42 @@
+.author-label {
+    display: flex;
+}
+
+.author-username {
+    margin-right: 20px;
+}
+
+.edit-btn {
+    background-color: transparent;
+    padding: 0 10px;
+    height: 20px;
+    border: 1px solid #3f51b5;
+    border-radius: 10px;
+    color: #3f51b5;
+}
+
+.edit-btn:hover:not([disabled]) {
+    background-color: #3f51b5;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.edit-btn:disabled {
+    opacity: 0.5;
+}
+
+.edit-btn.hide {
+    display: none;
+}
+
+.edit-btn.view {
+    display: block;
+}
+
+.edit-comment {
+    opacity: 0.5;
+    border: 1px solid rgb(163 163 163);
+    padding: 6px 0 3px 6px;
+    border-radius: 5px;
+}
+

@@ -32,11 +32,9 @@ export default function Favorites() {
       <Container style={{
           margin: 'auto',
           display: 'flex',
-          textAlign: 'left',
-          justifyContent: 'space-between',
+          flexWrap: 'wrap',
           justifyContent: 'center',
-          maxWidth: '400px',
-          alignItems: "center"
+          maxWith: '400px',
       }}>
         {favorites.length > 0 ? favorites.map(x => <FavoriteCard key={x._id} movie={x}/>) : null}
       </Container>

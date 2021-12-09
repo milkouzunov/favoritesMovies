@@ -10,16 +10,13 @@ import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles(() => ({
     root: {
-      maxWidth: 230,
-      paddingRight: '63px',
-      textAlign: 'center',
-      display: 'inline-block',
+      width: '20vw',
+      height: '80vh',
       margin: '15px',
-      
     },
     media: {
-      paddingRight: '150%',
-      paddingTop: '200%',
+      height: '60vh',
+      width: '20vw'
     },
     cardAction: {
         display: "block",
@@ -34,17 +31,17 @@ export default function FavoriteCard (movie) {
    
 
     return (
-        <Link underline='none' component={RouterLink} to={`/details/${movie.movie.movieId}`}>
+    <Link underline='none' component={RouterLink} to={`/details/${movie.movie.movieId}`}>
       <Card className={classes.root}>
         <ButtonBase className={classes.cardAction}>
           <CardMedia className={classes.media} image={movie.movie.imageUrl} />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="h2">
+            <Typography align="center" gutterBottom variant="h4" component="h2">
             {movie.movie.name}
             </Typography>
           </CardContent>
         </ButtonBase>
       </Card>
-      </Link>
+    </Link>
     );
 }
